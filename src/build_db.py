@@ -6,7 +6,6 @@ from sentence_transformers import SentenceTransformer
 MODEL_NAME = "jhgan/ko-sroberta-multitask"
 
 def load_data(filename="data/bidding.json"):
-    """데이터 로드"""
     if not os.path.exists(filename):
         print(f"파일 없음: {filename}")
         print("먼저 collect.py를 실행하세요.")
@@ -18,8 +17,7 @@ def load_data(filename="data/bidding.json"):
     print(f"데이터 로드: {len(data)}개")
     return data
 
-def build_db(data_file="data/bidding.json"):
-    """벡터 DB 구축"""
+def main(data_file="data/bidding.json"):
     data = load_data(data_file)
     if not data:
         return
@@ -86,4 +84,4 @@ def build_db(data_file="data/bidding.json"):
     print(f"완료: {len(embeddings)}개")
 
 if __name__ == "__main__":
-    build_db()
+    main()

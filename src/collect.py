@@ -20,7 +20,6 @@ OPERATIONS = [
 TOTAL_DAYS = 90  # 90일치 수집 (30일 x 3회)
 
 def fetch_api(api_key, operation, start_date, end_date, page=1, rows=100):
-    """API 호출"""
     params = {
         "serviceKey": api_key,
         "pageNo": page,
@@ -41,7 +40,6 @@ def fetch_api(api_key, operation, start_date, end_date, page=1, rows=100):
         return None
 
 def collect_from_api(api_key, max_pages=10):
-    """API에서 데이터 수집 (4개 분야 x 30일 단위)"""
     all_items = []
 
     # 30일 단위로 기간 분할 (자정 기준, 중복 방지)
@@ -88,7 +86,6 @@ def collect_from_api(api_key, max_pages=10):
     return all_items
 
 def save(data, path="data/bidding.json"):
-    """데이터 저장"""
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
